@@ -1,7 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:minamifuji/Screen/HomePage/addCamera.dart';
 import 'package:minamifuji/Screen/HomePage/addRoom.dart';
+import 'package:minamifuji/Screen/Login_Screen/loginForm.dart';
+import 'package:minamifuji/Screen/Report/ReportScreen.dart';
+
 import 'package:minamifuji/Screen/Room/addDevice.dart';
+import 'package:minamifuji/Screen/Room/showDevice.dart';
+import 'package:minamifuji/Screen/Translation/translation_screen.dart';
+import 'package:minamifuji/model/room_model.dart';
 
 class ShowRoomScreen extends StatefulWidget {
   const ShowRoomScreen({super.key});
@@ -17,6 +23,15 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
       appBar: AppBar(
         title: Text('Welcome'),
         backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: ((build) => TranslationScreen()));
+              },
+              icon: Icon(Icons.translate)),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -37,6 +52,14 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.pie_chart_outline),
+              title: Text('Report'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ReportScreen()));
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.settings),
               title: Text('settings'),
               onTap: () {
@@ -54,14 +77,15 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
               leading: Icon(Icons.exit_to_app),
               title: Text('Logout'),
               onTap: () {
-                print("Logout");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Login_Form()));
               },
             ),
           ],
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         child: Column(
           children: [
             Row(
@@ -73,7 +97,10 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    print('Add Room');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddRoomScreen()));
                   },
                   child: Container(
                     height: 55,
@@ -103,19 +130,50 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
                   crossAxisCount: 2,
                   mainAxisExtent: 200,
                 ),
-                itemCount: 5,
+                itemCount: dataRoomList.length,
                 itemBuilder: (context, Index) {
+                  DataRoom dataRoom = dataRoomList[Index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddDeviceScreen()));
+                              builder: (context) => ShowDeviceScreen(
+                                    dataRoom: dataRoom,
+                                  )));
                     },
                     child: Card(
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(padding: EdgeInsets.all(5)),
+                          Text(
+                            dataRoom.nameRoom,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            height: 110,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Image.asset(dataRoom.imgRoom),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            child: Text(dataRoom.deviceRoom),
+                          ),
+                        ],
                       ),
                     ),
                   );

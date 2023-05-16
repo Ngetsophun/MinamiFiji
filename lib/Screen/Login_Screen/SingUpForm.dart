@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 2,
-                    color: Colors.red,
+                    color: Colors.black,
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -146,18 +146,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Container(
                                       height: 50,
                                       width: double.infinity,
-                                      child: ElevatedButton(
+                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black,
+                                        ),
                                         onPressed: () {
-                                          // if (_formfield.currentState!
-                                          //     .validate()) {
-                                          //   print("success");
-                                          //   emailController.clear();
-                                          //   passController.clear();
-                                          // }
+                                          
+                                          
                                         },
-                                        child: Text(
-                                          "Create Account",
-                                          style: TextStyle(fontSize: 25),
+                                        child: const Text(
+                                          'Create Account',
+                                          style: TextStyle(fontSize: 20),
                                         ),
                                       )),
                                   SizedBox(

@@ -42,12 +42,21 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       body: Container(
         padding: EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'Add Room',
+              style: TextStyle(fontSize: 40),
+            ),
+            SizedBox(
+              height: 40,
+            ),
             Center(
               child: Stack(
                 children: <Widget>[
                   Column(children: <Widget>[
                     CircleAvatar(
+                      backgroundColor: Colors.black,
                       radius: 80,
                       backgroundImage:
                           _imageFile != null ? FileImage(_imageFile!) : null,
@@ -80,7 +89,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                   border: OutlineInputBorder(),
                   labelText: 'Name Room',
                   prefixIcon: Icon(
-                    Icons.playlist_add_circle_sharp,
+                    Icons.home,
                     color: Colors.black,
                   ),
                 ),
@@ -103,7 +112,8 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     'Save Room',
                     style: TextStyle(fontSize: 18),
                   ),
-                ))
+                )
+              )
           ],
         ),
       ),

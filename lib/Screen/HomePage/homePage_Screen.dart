@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minamifuji/Screen/HomePage/addRoom.dart';
+import 'package:minamifuji/Screen/Room/showDevice.dart';
+import 'package:minamifuji/model/room_model.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -13,8 +15,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         title: Text('Welcome'),
         backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.translate))],
       ),
       drawer: Drawer(
         child: ListView(
@@ -79,10 +84,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       backgroundColor: Colors.black,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AddRoomScreen()));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ShowDeviceScreen(dataRoom: dataRo,)));
                     },
                     child: const Text(
                       'Add Room',
@@ -94,6 +99,5 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ),
       ),
     );
-  
   }
 }

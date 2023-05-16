@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minamifuji/Screen/HomePage/addCamera.dart';
-
-import 'package:minamifuji/Screen/HomePage/addRoom.dart';
 import 'package:minamifuji/Screen/HomePage/showRoom.dart';
+import 'package:minamifuji/Screen/Report/barchartScreen.dart';
 
 
 void main() {
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ShowRoomScreen(),
+      home: ShowRoomScreen()
     );
   }
 }

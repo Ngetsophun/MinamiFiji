@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minamifuji/Screen/HomePage/homePage_Screen.dart';
+import 'package:minamifuji/Screen/HomePage/showRoom.dart';
 import 'package:minamifuji/Screen/Login_Screen/ForgotFrom.dart';
 import 'package:minamifuji/Screen/Login_Screen/SingUpForm.dart';
 
@@ -11,7 +12,6 @@ class Login_Form extends StatefulWidget {
 }
 
 class _Login_FormState extends State<Login_Form> {
-  
   final _formfield = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -32,7 +32,7 @@ class _Login_FormState extends State<Login_Form> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 2,
-                    color: Colors.red,
+                    color: Colors.black,
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -153,25 +153,22 @@ class _Login_FormState extends State<Login_Form> {
                                       height: 50,
                                       width: double.infinity,
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black,
+                                        ),
                                         onPressed: () {
-                                          // if (_formfield.currentState!
-                                          //     .validate()) {
-                                          //   print("success");
-                                          //   emailController.clear();
-                                          //   passController.clear();
-                                          // }
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                     HomePageScreen()));
+                                                      ShowRoomScreen()));
                                           print("success");
                                           emailController.clear();
                                           passController.clear();
                                         },
-                                        child: Text(
-                                          "Login",
-                                          style: TextStyle(fontSize: 25),
+                                        child: const Text(
+                                          'Login',
+                                          style: TextStyle(fontSize: 20),
                                         ),
                                       )),
                                   SizedBox(
@@ -264,6 +261,5 @@ class _Login_FormState extends State<Login_Form> {
         ),
       ),
     );
-  
   }
 }
