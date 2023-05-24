@@ -57,11 +57,12 @@ class _Login_FormState extends State<Login_Form> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 1.3,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          )),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Column(
@@ -90,6 +91,11 @@ class _Login_FormState extends State<Login_Form> {
                                       controller: emailController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 2)),
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                         labelText: 'Enter your Email',
                                         prefixIcon: Icon(
                                           Icons.email_outlined,
@@ -109,6 +115,11 @@ class _Login_FormState extends State<Login_Form> {
                                       controller: passController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 2)),
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                         labelText: 'Enter your Password',
                                         prefixIcon: Icon(
                                           Icons.lock,

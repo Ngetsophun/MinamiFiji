@@ -10,6 +10,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formfield = GlobalKey<FormState>();
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -38,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Container(
                           child: Text(
-                            "Welcome From E-Robot",
+                            "Welcome From Minamifuji",
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
@@ -86,6 +87,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       controller: nameController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 2)),
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                         labelText: 'Enter your Name',
                                         prefixIcon: Icon(
                                           Icons.person,
@@ -103,6 +109,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       controller: emailController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 2)),
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                         labelText: 'Enter your Email',
                                         prefixIcon: Icon(
                                           Icons.email_outlined,
@@ -122,6 +133,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       controller: passController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 2)),
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                         labelText: 'Enter your Password',
                                         prefixIcon: Icon(
                                           Icons.lock,
@@ -146,13 +162,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Container(
                                       height: 50,
                                       width: double.infinity,
-                                       child: ElevatedButton(
+                                      child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.black,
                                         ),
                                         onPressed: () {
-                                          
-                                          
+                                          if (_formfield.currentState!
+                                              .validate()) {
+                                                
+                                              }
                                         },
                                         child: const Text(
                                           'Create Account',

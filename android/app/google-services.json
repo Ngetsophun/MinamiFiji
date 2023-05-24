@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "144934346625",
+    "project_id": "minamifujiiot",
+    "storage_bucket": "minamifujiiot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144934346625:android:37879c88e22be38f135280",
+        "android_client_info": {
+          "package_name": "com.example.minamifuji"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144934346625-ip5ld81iu2l9e69pilkg6lci1b55krat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClq9jr2WJabJbO5gju3VPXgkBsqGL7SYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144934346625-ip5ld81iu2l9e69pilkg6lci1b55krat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

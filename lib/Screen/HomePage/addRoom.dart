@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:minamifuji/resource/store_dataRoom.dart';
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -10,13 +11,21 @@ class AddRoomScreen extends StatefulWidget {
 }
 
 class _AddRoomScreenState extends State<AddRoomScreen> {
-  File? _imageFile;
+  File? imageFile;
+
+  final _globalKey = GlobalKey<FormState>();
+  TextEditingController _nameRoom = TextEditingController();
+
+  void SaveRoom() async {
+    String name = _nameRoom.text;
+    String resp = await saveDataRoom(name: name, file: imageFile!);
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final image = await openImagePicker(source);
 
     setState(() {
-      _imageFile = image;
+      imageFile = image;
     });
   }
 
@@ -55,12 +64,22 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               child: Stack(
                 children: <Widget>[
                   Column(children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.black,
-                      radius: 80,
-                      backgroundImage:
-                          _imageFile != null ? FileImage(_imageFile!) : null,
-                    ),
+                    imageFile != null
+                        ? CircleAvatar(
+                            radius: 80, backgroundImage: FileImage(imageFile!))
+                        : CircleAvatar(
+                            radius: 80,
+                            backgroundImage:
+                                AssetImage('assets/Images/defaultImage.png'),
+                          )
+                    // CircleAvatar(
+                    //   backgroundColor: Colors.black,
+                    //   radius: 80,
+                    //   backgroundImage:
+                    //      _imageFile != null ? FileImage(_imageFile!) : null,
+                    //  // backgroundImage:
+                    //     //  AssetImage('assets/Images/defaultImage.png'),
+                    // ),
                   ]),
                   Positioned(
                       bottom: 20.0,
@@ -85,9 +104,18 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
             ),
             Container(
               child: TextFormField(
+                controller: _nameRoom,
+                validator: (value) {
+                  if (value!.isEmpty) return 'Name can not is empty';
+                  return null;
+                },
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 2)),
                   labelText: 'Name Room',
+                  labelStyle: TextStyle(color: Colors.black),
                   prefixIcon: Icon(
                     Icons.home,
                     color: Colors.black,
@@ -106,14 +134,14 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     backgroundColor: Colors.black,
                   ),
                   onPressed: () {
+                    SaveRoom();
                     print('Save Room to firebase');
                   },
                   child: const Text(
                     'Save Room',
                     style: TextStyle(fontSize: 18),
                   ),
-                )
-              )
+                ))
           ],
         ),
       ),
