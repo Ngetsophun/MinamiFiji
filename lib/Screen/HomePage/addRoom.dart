@@ -1,4 +1,7 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:minamifuji/resource/store_dataRoom.dart';
@@ -13,11 +16,14 @@ class AddRoomScreen extends StatefulWidget {
 class _AddRoomScreenState extends State<AddRoomScreen> {
   File? imageFile;
 
-  final _globalKey = GlobalKey<FormState>();
-  TextEditingController _nameRoom = TextEditingController();
+  CollectionReference roomdevices =
+      FirebaseFirestore.instance.collection('roomdevices');
+
+  get _globalKey => GlobalKey<FormState>();
+  TextEditingController nameRoomController = TextEditingController();
 
   void SaveRoom() async {
-    String name = _nameRoom.text;
+    String name = nameRoomController.text;
     String resp = await saveDataRoom(name: name, file: imageFile!);
   }
 
@@ -104,7 +110,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
             ),
             Container(
               child: TextFormField(
-                controller: _nameRoom,
+                controller: nameRoomController,
                 validator: (value) {
                   if (value!.isEmpty) return 'Name can not is empty';
                   return null;
@@ -145,6 +151,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
           ],
         ),
       ),
+    
     );
   }
 
@@ -206,4 +213,5 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       ),
     );
   }
+
 }

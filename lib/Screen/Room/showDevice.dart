@@ -23,8 +23,11 @@ class _ShowDeviceScreenState extends State<ShowDeviceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Show Device'),
-        backgroundColor: Colors.transparent,
+        title: Text(
+          'Show Device',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
@@ -49,7 +52,6 @@ class _ShowDeviceScreenState extends State<ShowDeviceScreen> {
                         children: [
                           Text(
                             device.deviceName,
-                          
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
@@ -94,7 +96,6 @@ class _ShowDeviceScreenState extends State<ShowDeviceScreen> {
               );
             }),
       ),
-      
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(context,

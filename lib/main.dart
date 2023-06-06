@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:minamifuji/Screen/HomePage/showRoom.dart';
-import 'package:minamifuji/Screen/Login_Screen/SingUpForm.dart';
+
 import 'package:minamifuji/Screen/Login_Screen/loginForm.dart';
-import 'package:minamifuji/Screen/Report/barchartScreen.dart';
-import 'package:minamifuji/Screen/Room/showDeviceRoom.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, 
-    //home: ShowDeviceRoom()
-        //home: ShowRoomScreen(),
-        home:  SignUpScreen(),
-        );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      //home: ShowRoomScreen(),
+       home:  Login_Form(),
+      //home:  SignUpScreen(),
+      //  home: AddRoomDeviceScreen(),
+    );
   }
 }

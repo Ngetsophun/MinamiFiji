@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:minamifuji/Screen/Login_Screen/loginForm.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -9,13 +12,28 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _formfield = GlobalKey<FormState>();
+  get _formfield => GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  // final nameFocusNode = FocusNode();
+  // final emailFocusNode = FocusNode();
+  // final passFocusNode = FocusNode();
+
   bool passToggle = true;
+
+  // @override
+  // void initState() {
+
+  //   super.dispose();
+  //   passController.dispose();
+  //   emailController.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -85,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Container(
                                     child: TextField(
                                       controller: nameController,
+                                      //focusNode: nameFocusNode,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         focusedBorder: OutlineInputBorder(
@@ -107,6 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     child: TextField(
                                       keyboardType: TextInputType.emailAddress,
                                       controller: emailController,
+                                      //focusNode: emailFocusNode,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         focusedBorder: OutlineInputBorder(
@@ -167,10 +187,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           backgroundColor: Colors.black,
                                         ),
                                         onPressed: () {
-                                          if (_formfield.currentState!
-                                              .validate()) {
-                                                
-                                              }
+                                          // if (_formfield.currentState!
+                                          //     .validate()) {
+                                          //   _auth
+                                          //       .createUserWithEmailAndPassword(
+                                          //           email: emailController.text
+                                          //               .toString(),
+                                          //           password: passController
+                                          //               .text
+                                          //               .toString());
+                                          // }
+
+                                          FirebaseAuth.instance
+                                              .createUserWithEmailAndPassword(
+                                                  email: emailController.text
+                                                      .trim(),
+                                                  password: passController.text
+                                                      .trim())
+                                              .then((value) {
+                                            print("Create account");
+                                          }).onError((error, stackTrace) {
+                                            print('Error${error.toString()}');
+                                          });
+                                          Fluttertoast.showToast(
+                                              msg: 'Create Success');
+                                          nameController.clear();
+                                          emailController.clear();
+                                          passController.clear();
                                         },
                                         child: const Text(
                                           'Create Account',

@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:minamifuji/Screen/Room/addDeviceRoom.dart';
-import 'package:minamifuji/Screen/Room/updateDeviceRoom.dart';
 
 class ShowDeviceRoom extends StatefulWidget {
   const ShowDeviceRoom({super.key});
@@ -14,12 +13,18 @@ class ShowDeviceRoom extends StatefulWidget {
 class _ShowDeviceRoomState extends State<ShowDeviceRoom> {
   final databaseRef = FirebaseDatabase.instance.reference().child('path');
 
+  bool colorDevice = true;
+  bool switchColor = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Show Device'),
-        backgroundColor: Colors.transparent,
+        title: Text(
+          'Show Device',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: SafeArea(
           child: FirebaseAnimatedList(
@@ -83,17 +88,19 @@ class _ShowDeviceRoomState extends State<ShowDeviceRoom> {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ListTile(
         onTap: () {
-          print(myroomapp['name']);
+          setState(() {
+            // colorDevice = !colorDevice;
+            switchColor = !switchColor;
+          });
+          print(switchColor ? myroomapp['key'].toString() : myroomapp['name']);
         },
-
         shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Color.fromARGB(255, 213, 209, 240),
-          ),
+          side: BorderSide(color: Color.fromARGB(255, 213, 209, 240)),
           borderRadius: BorderRadius.circular(10),
         ),
-        
-        tileColor: Color.fromARGB(255, 194, 204, 235),
+        tileColor: colorDevice
+            ? Color.fromARGB(255, 194, 204, 235)
+            : Color.fromARGB(255, 190, 233, 195),
         trailing: Column(
           children: [
             PopupMenuButton(
@@ -101,14 +108,13 @@ class _ShowDeviceRoomState extends State<ShowDeviceRoom> {
                 PopupMenuItem(
                     child: InkWell(
                   onTap: () {
-                   
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
                     //         builder: (context) =>
                     //             UpdateDeviceRoom(myroomAPP: myroomapp['key'])));
-                  //  UpdateDeviceRoomDialog();
-                    
+                    //  UpdateDeviceRoomDialog();
+
                     print('update');
                   },
                   child: Row(

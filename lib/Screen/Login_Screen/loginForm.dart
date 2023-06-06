@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:minamifuji/Screen/HomePage/homePage_Screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:minamifuji/Screen/HomePage/showRoom.dart';
 import 'package:minamifuji/Screen/Login_Screen/ForgotFrom.dart';
 import 'package:minamifuji/Screen/Login_Screen/SingUpForm.dart';
@@ -12,7 +14,7 @@ class Login_Form extends StatefulWidget {
 }
 
 class _Login_FormState extends State<Login_Form> {
-  final _formfield = GlobalKey<FormState>();
+  get _formfield => GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
@@ -168,11 +170,21 @@ class _Login_FormState extends State<Login_Form> {
                                           backgroundColor: Colors.black,
                                         ),
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ShowRoomScreen()));
+                                          FirebaseAuth.instance
+                                              .signInWithEmailAndPassword(
+                                                  email: emailController.text
+                                                      .trim(),
+                                                  password: passController.text
+                                                      .trim())
+                                              .then((value) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ShowRoomScreen()));
+                                          });
+                                          Fluttertoast.showToast(
+                                              msg: "Login Successfull");
                                           print("success");
                                           emailController.clear();
                                           passController.clear();
