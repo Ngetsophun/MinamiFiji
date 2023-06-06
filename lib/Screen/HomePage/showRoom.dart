@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:minamifuji/Screen/Login_Screen/drawer_screen.dart';
 
+import 'package:minamifuji/Screen/Room/showDeviceRoom.dart';
+
 import 'package:minamifuji/Screen/Translation/translation_screen.dart';
 
 
@@ -50,10 +52,10 @@ class _ShowRoomScreenState extends State<ShowRoomScreen> {
                     //DataRoom dataRoom = dataRoomList[Index];
                     return GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => ShowDeviceRoom()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ShowDeviceRoom()));
                         print(snapshot.data?.docs[Index]['name Room']);
                       },
                       child: Card(

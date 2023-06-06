@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:minamifuji/Screen/Login_Screen/loginForm.dart';
 
 
+import 'Screen/HomePage/showRoom.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      //home: ShowRoomScreen(),
-       home:  Login_Form(),
+      home: ShowRoomScreen(),
+     // home: Login_Form(),
       //home:  SignUpScreen(),
       //  home: AddRoomDeviceScreen(),
     );
